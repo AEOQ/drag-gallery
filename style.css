@@ -15,7 +15,7 @@ form {
     
     &::before,&::after {
       content: '關閉'; 
-      font-size:1.5em; text-align:center;
+      font-size:1.25em; text-align:center;
       color:white;
       height:4rem; line-height:4rem;
       background: #99999977;
