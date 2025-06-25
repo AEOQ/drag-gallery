@@ -1,5 +1,4 @@
 import { A, E, O, Q } from 'https://aeoq.github.io/AEOQ.mjs';
-console.log(E('img', {src:'00.png',alt:'e'}));
 import PointerInteraction from 'https://aeoq.github.io/pointer-interaction/script.js';
 const tagName = 'drag-gallery';
 customElements.define(tagName, class extends HTMLElement {
