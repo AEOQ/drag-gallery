@@ -6,7 +6,7 @@
 <style>
   drag-gallery img {max-height:30em;}
 </style>
-<drag-gallery>
+<drag-gallery id=part hidden>
   <figure>
     <img src='https://go-shoot.github.io/miscellaneous/images/CG Instruction/Wheels.jpg'>
     <img src='https://go-shoot.github.io/miscellaneous/images/CG Instruction/Wheel N エアブラスト 1.jpg'>
@@ -29,11 +29,16 @@
   </figure>
 </drag-gallery>
 
-<drag-gallery>
+<drag-gallery id=gear hidden>
     <figure>
     <img src='https://go-shoot.github.io/miscellaneous/images/CG Instruction/Gear instruction 1.jpg'>
     <img src='https://go-shoot.github.io/miscellaneous/images/CG Instruction/Gear instruction 2.jpg'>
   </figure>
 </drag-gallery>
-<script type=module>import { A, E, O, Q } from 'https://aeoq.github.io/AEOQ.mjs';
-Q('drag-gallery')[1].open()</script>
+
+<a href=#gear>Gear</a>
+<a href=#part>Part</a>
+<script type=module>
+import { A, E, O, Q } from 'https://aeoq.github.io/AEOQ.mjs';
+Q('a[href^="#"', a => a.onclick = () => Q(a.getAttribute('href')).open());
+</script>

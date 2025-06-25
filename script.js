@@ -20,13 +20,16 @@ customElements.define(tagName, class extends HTMLElement {
       E('figure', [E('slot', {name: `slot-${i}`})])
     ));
     this.append(...[...this.children].map((figure, i) => 
-      [...figure.children].map(img => E('a', 
-        [E(img).set({alt: img.src.match(/([^./]+)\.[^.]+$/)[1]})], 
-        {href: img.src, slot: `slot-${i}`}
-      ))
+      [...figure.children].map(img => 
+        E(img).set({
+          alt: img.src.match(/([^./]+)\.[^.]+$/)[1], 
+          slot: `slot-${i}`
+        })
+      )
     ).flat());
     this.Q('figure:empty', figure => figure.remove());
     this.events();
+    setTimeout(() => this.hidden = false);
   }
   events() {
     PointerInteraction.events([[
