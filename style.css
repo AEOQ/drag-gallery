@@ -32,11 +32,11 @@ div {
   button {pointer-events:initial;}
 }
 figure {
-  margin:.5em 0;
+  margin:.5rem 0;
   font-size:calc(var(--f,1)*1em);
   
   slot {
-    display:flex; gap:0 .5em; 
+    display:flex; gap:0 .5rem; 
     overflow-x:scroll;
     
     &.PI-dragged {pointer-events:none;}
