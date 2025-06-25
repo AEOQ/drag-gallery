@@ -46,4 +46,3 @@ button {
   all:unset;
   cursor:pointer;
 }
-::slotted(*) {pointer-events:none;}

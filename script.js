@@ -24,7 +24,7 @@ customElements.define(tagName, class extends HTMLElement {
         E(img).set({slot: `slot-${i}`})
       )
     ).flat());
-    this.Q('figure:empty', figure => figure.remove());
+    this.Q('figure', figure => figure.remove());
     this.events();
     setTimeout(() => this.hidden = false);
   }
@@ -32,7 +32,8 @@ customElements.define(tagName, class extends HTMLElement {
     PointerInteraction.events([[
       this.sQ('figure slot'), 
       {drag: PI => PI.drag.to.scroll({x: true, y: false})} 
-    ]]); 
+    ]]);
+    this.Q('img[slot][alt]', img => img.ondblclick = () => open(`https://www.google.com/search?q=${img.alt}&udm=2`));
     this.sQ('.small,.large', button => button.onclick = () =>
       E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)})
     );
