@@ -39,6 +39,8 @@ customElements.define(tagName, class extends HTMLElement {
     this.sQ('.small,.large', button => button.onclick = () =>
       E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)})
     );
+    let a = Q(`a[href='#${this.id}']`);
+    a && (a.onclick = () => this.open());
   }
   open = () => this.dialog.showModal();
 });
