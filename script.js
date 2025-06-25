@@ -1,4 +1,5 @@
 import { A, E, O, Q } from 'https://aeoq.github.io/AEOQ.mjs';
+console.log(E('img', {src:'00.png',alt:'e'}));
 import PointerInteraction from 'https://aeoq.github.io/pointer-interaction/script.js';
 const tagName = 'drag-gallery';
 customElements.define(tagName, class extends HTMLElement {
@@ -21,10 +22,7 @@ customElements.define(tagName, class extends HTMLElement {
     ));
     this.append(...[...this.children].map((figure, i) => 
       [...figure.children].map(img => 
-        E(img).set({
-          alt: img.src.match(/([^./]+)\.[^.]+$/)[1], 
-          slot: `slot-${i}`
-        })
+        E(img).set({slot: `slot-${i}`})
       )
     ).flat());
     this.Q('figure:empty', figure => figure.remove());
