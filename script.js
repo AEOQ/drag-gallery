@@ -2,6 +2,7 @@ import { A, E, O, Q } from 'https://aeoq.github.io/AEOQ.mjs';
 import PointerInteraction from 'https://aeoq.github.io/pointer-interaction/script.js';
 const tagName = 'drag-gallery';
 customElements.define(tagName, class extends HTMLElement {
+  #counter = 0;
   constructor() {
     super();
     this.attachShadow({ mode: 'open' }).append(
@@ -16,20 +17,26 @@ customElements.define(tagName, class extends HTMLElement {
     );
   }
   connectedCallback() {
-    this.dialog.append(...[...this.children].map((figure, i) =>
-      E('figure', [E('slot', {name: `slot-${i}`})])
-    ));
-    this.append(...[...this.children].flatMap((figure, i) => 
-      [...figure.children].map(img => E(img).set({
-        slot: `slot-${i}`, 
-        classList: img.classList + (img.alt ? ' lookup' : '')
-      }))
-    ));
-    this.Q('figure', figure => figure.remove());
+    this.arrange();
     this.events();
     setTimeout(() => this.hidden = false);
   }
+  arrange() {
+    let figures = [...this.querySelectorAll('figure')];
+    this.dialog.append(...figures.map((figure, i) =>
+      E('figure', [E('slot', {name: `slot-${this.#counter + i}`})])
+    ));
+    this.append(...figures.flatMap((figure, i) => 
+      [...figure.children].map(img => E(img).set({
+        slot: `slot-${this.#counter + i}`, 
+        classList: img.classList + (img.alt ? ' lookup' : '')
+      }))
+    ));
+    figures.forEach(figure => figure.remove());
+    this.#counter++;
+  }
   events() {
+    new MutationObserver(([{addedNodes}]) => addedNodes?.length > 0 && this.arrange()).observe(this, {childList: true});
     PointerInteraction.events([[
       this.sQ('figure slot'), 
       {drag: PI => PI.drag.to.scroll({x: true, y: false})} 
@@ -40,7 +47,7 @@ customElements.define(tagName, class extends HTMLElement {
     );
     let a = Q(`a[href='#${this.id}']`);
     a && (a.onclick = () => this.open());
-    window.location.hash == this.id && this.open();
+    this.id && window.location.hash == this.id && this.open();
   }
   open = () => this.dialog.showModal();
 });
