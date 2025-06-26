@@ -6,26 +6,20 @@ dialog[open] {
   box-sizing:border-box;
   background:rgba(0,0,0,.9);
 }
-form, div {
+form {
   position:fixed; top:0;
   width:100%; height:4rem;
-}
-form button {
-  width:100%;
-  font-size:1.25em; color:white;
-  text-align:center; line-height:4rem;
+  display:flex;
   background:rgba(90, 90, 90, .9);
+
+  button {
+    font-size:1.25em; color:white;
+    text-align:center; line-height:4rem;
+    padding:0 .5rem;
     
-  &::before {content: '關閉'; }
-}
-div {
-  z-index:1;
-  display:flex; justify-content:space-between;
-  font-size:1.5em;
-  padding:0 .5em; box-sizing:border-box;
-  pointer-events:none;
-  
-  button {pointer-events:initial;}
+    &.close {flex-grow:1;}
+    &:not(.close) {filter:drop-shadow(00 .1em white);}
+  }
 }
 figure {
   margin:.5rem 0;

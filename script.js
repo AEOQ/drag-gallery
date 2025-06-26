@@ -8,11 +8,11 @@ customElements.define(tagName, class extends HTMLElement {
     this.attachShadow({ mode: 'open' }).append(
       E('link', {rel: 'stylesheet', href: `https://aeoq.github.io/${tagName}/style.css` }),
       this.dialog = E('dialog', [
-        E('div', [
+        E('form', {method: 'dialog'}, [
           E('button', {classList: 'small'}, '🔎➖'),
+          E('button', {classList: 'close'}, '關閉'),
           E('button', {classList: 'large'}, '➕🔍')
-        ]),
-        E('form', {method: 'dialog'}, [E('button')])
+        ])
       ])
     );
   }
@@ -42,8 +42,8 @@ customElements.define(tagName, class extends HTMLElement {
       {drag: PI => PI.drag.to.scroll({x: true, y: false})} 
     ]]);
     this.Q('img.lookup', img => img.ondblclick = () => open(`https://www.google.com/search?q=${img.alt}&udm=2`));
-    this.sQ('.small,.large', button => button.onclick = () =>
-      E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)})
+    this.sQ('.small,.large', button => button.onclick = ev =>
+      E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)}) && false
     );
     Q(`a[href='#${this.id}']`)?.addEventListener('click', () => this.open());
     this.id && window.location.hash == this.id && this.open();
