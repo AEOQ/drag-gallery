@@ -45,7 +45,7 @@ customElements.define(tagName, class extends HTMLElement {
     this.sQ('.small,.large', button => button.onclick = () =>
       E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)})
     );
-    Q(`a[href='#${this.id}']`)?.addEventListener(() => this.open());
+    Q(`a[href='#${this.id}']`)?.addEventListener('click', () => this.open());
     this.id && window.location.hash == this.id && this.open();
   }
   open = () => this.dialog.showModal();
