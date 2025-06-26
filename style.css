@@ -1,4 +1,7 @@
 :host([hidden]),::slotted([hidden]) {display:none !important;}
+:host {
+  position:fixed; left:0; top:0;
+}
 dialog[open] {
   all:unset;
   width:100%; min-height:100vh;
