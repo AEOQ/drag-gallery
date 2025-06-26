@@ -18,7 +18,7 @@ form {
     padding:0 .5rem;
     
     &.close {flex-grow:1;}
-    &:not(.close) {filter:drop-shadow(00 .1em white);}
+    &:not(.close) {filter:drop-shadow(0 0 .1em white);}
   }
 }
 figure {
