@@ -40,6 +40,7 @@ customElements.define(tagName, class extends HTMLElement {
     );
     let a = Q(`a[href='#${this.id}']`);
     a && (a.onclick = () => this.open());
+    window.location.hash == this.id && this.open();
   }
   open = () => this.dialog.showModal();
 });
