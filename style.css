@@ -43,4 +43,5 @@ button {
 }
 ::slotted(:not(img)) {
   margin:1em auto;
+  color:white;
 }
