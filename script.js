@@ -41,7 +41,7 @@ customElements.define(tagName, class extends HTMLElement {
       this.sQ('figure slot'), 
       {drag: PI => PI.drag.to.scroll({x: true, y: false})} 
     ]]);
-    this.Q('img.lookup', img => img.ondblclick = () => open(`https://www.google.com/search?q=${img.alt}&udm=2`));
+    this.ondblclick = ev => ev.target.matches('img.lookup') && open(`https://www.google.com/search?q=${ev.target.alt}&udm=2`);
     this.sQ('.small,.large', button => button.onclick = ev =>
       E(this.dialog).set({'--f': (E(this.dialog).get('--f') || 1) + .1 * (button.classList[0] == 'large' ? 1 : -1)}) && false
     );
