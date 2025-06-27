@@ -23,6 +23,8 @@ customElements.define(tagName, class extends HTMLElement {
   }
   arrange() {
     let figures = [...this.querySelectorAll('figure')];
+    if (!figures.length)
+      return this.dialog.append(E('slot'));
     this.dialog.append(...figures.map((figure, i) =>
       E('figure', [E('slot', {name: `slot-${this.#counter + i}`})])
     ));

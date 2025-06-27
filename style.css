@@ -1,6 +1,7 @@
 :host([hidden]),::slotted([hidden]) {display:none !important;}
 dialog[open] {
-  max-width:100%; min-height:max(100%,100vh); max-height:max(100%,100vh);
+  width:100%; max-width:100%;
+  min-height:max(100%,100vh); max-height:max(100%,100vh);
   padding:4rem 0 0 0; margin:0;
   border:none;
   box-sizing:border-box;
@@ -20,6 +21,7 @@ form {
     &.close {flex-grow:1;}
     &:not(.close) {filter:drop-shadow(0 0 .1em white);}
   }
+  &:not(:has(~figure)) button:not(.close) {display:none;}
 }
 figure {
   margin:.5rem 0;
@@ -36,6 +38,9 @@ button {
   all:unset;
   cursor:pointer;
 }
-::slotted(*) {
+::slotted(img) {
   user-select:none; -webkit-user-drag:none;
+}
+::slotted(:not(img)) {
+  margin:1em auto;
 }
